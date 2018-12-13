@@ -2,15 +2,7 @@
 GUI for Main
 """
 import tkinter as tk
-
-
-def mittelwert(array):
-    """Berechnet Mittelwert"""
-    mittel = 0.0
-    for num in array:
-        mittel += float(num)
-    mittel = mittel / len(array)
-    return mittel
+import f
 
 
 class Main:  # pylint: disable=too-few-public-methods
@@ -57,7 +49,7 @@ class Urliste:
         liste = liste.replace(" ", "")
         urliste_array = liste.split(",")
         try:
-            _mittelwert = mittelwert(urliste_array)
+            _mittelwert = f.mittelwert(urliste_array)
             self.label['text'] = str(_mittelwert)
         except ValueError:
             self.label['text'] = 'Falsche Eingabe'
