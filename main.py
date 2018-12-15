@@ -2,11 +2,10 @@
 GUI for Main
 """
 import tkinter as tk
-import f
+import f  # Modul
 
 
-class Main:  # pylint: disable=too-few-public-methods
-    """Hauptseite wird erstellt"""
+class Main:
     def __init__(self):
         self.master = tk.Tk()
         self.master.title("Hauptmenü")
@@ -19,54 +18,56 @@ class Main:  # pylint: disable=too-few-public-methods
         self.master.mainloop()
 
     def zur_urliste(self):
-        """Zu Urliste()"""
         self.master.destroy()
         urliste()
 
 
 class Urliste:
-    """Urliste wird erstellt"""
     def __init__(self):
         self.master = tk.Tk()
         self.master.title("Urliste")
+        self.frame_top = tk.Frame(self.master)
         self.text_urliste = tk.Text(self.master, height=2)
-        self.berechnen_button = tk.Button(self.master, text="Berechnen",
+        self.berechnen_button = tk.Button(self.frame_top, text="Berechnen",
                                           command=self.berechnen)
-        self.label = tk.Label(self.master, text="")
+        self.label = tk.Label(self.master, text="Bitte was eingeben")
         self.zurueck_button = tk.Button(self.master, text="Zum Hauptmenü",
                                         command=self.zurueck)
+        self.clear_button = tk.Button(self.frame_top, text="Löschen",
+                                        command=self.clear)
 
         self.text_urliste.pack()
-        self.berechnen_button.pack()
+        self.frame_top.pack(fill="x")
+        self.berechnen_button.pack(side="left")
+        self.clear_button.pack(side="left")
         self.label.pack()
         self.zurueck_button.pack()
 
         self.master.mainloop()
 
     def berechnen(self):
-        """bei berechnen_button"""
         liste = self.text_urliste.get("1.0", "end-1c")
         liste = liste.replace(" ", "")
         urliste_array = liste.split(",")
         try:
             _mittelwert = f.mittelwert(urliste_array)
-            self.label['text'] = str(_mittelwert)
+            self.label['text'] = f.antwort(urliste_array)
         except ValueError:
             self.label['text'] = 'Falsche Eingabe'
 
     def zurueck(self):
-        """Zum Main"""
         self.master.destroy()
         main()
 
+    def clear(self):
+        self.text_urliste.delete('1.0', 'end')
+        self.label['text'] = 'Bitte was eingeben'
 
 def main():
-    """Hier fängt das Programm an."""
     Main()
 
 
 def urliste():
-    """Hier wird die Seite für die Urliste erstellt"""
     Urliste()
 
 

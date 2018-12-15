@@ -10,3 +10,9 @@ def mittelwert(array):
         mittel += float(num)
     mittel = mittel / len(array)
     return mittel
+
+def antwort(array):
+    x = "\
+    Mittelwert: %g\
+    " % mittelwert(array)
+    return x
