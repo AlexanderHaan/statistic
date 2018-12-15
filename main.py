@@ -30,7 +30,8 @@ class Urliste:
         self.text_urliste = tk.Text(self.master, height=2)
         self.berechnen_button = tk.Button(self.frame_top, text="Berechnen",
                                           command=self.berechnen)
-        self.label = tk.Label(self.master, text="Bitte was eingeben")
+        self.label = tk.Label(self.master, text="Bitte was eingeben", anchor="w",
+                              justify="left")
         self.zurueck_button = tk.Button(self.master, text="Zum Hauptmenü",
                                         command=self.zurueck)
         self.clear_button = tk.Button(self.frame_top, text="Löschen",
