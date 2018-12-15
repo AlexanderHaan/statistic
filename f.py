@@ -3,8 +3,7 @@ Functions for Main
 """
 
 
-def mittelwert(array):
-    """Berechnet Mittelwert"""
+def mittelwert(array):  # Hi wie gehtś
     mittel = 0.0
     for num in array:
         mittel += float(num)
