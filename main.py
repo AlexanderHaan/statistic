@@ -34,7 +34,7 @@ class Urliste:
         self.zurueck_button = tk.Button(self.master, text="Zum Hauptmenü",
                                         command=self.zurueck)
         self.clear_button = tk.Button(self.frame_top, text="Löschen",
-                                        command=self.clear)
+                                      command=self.clear)
 
         self.text_urliste.pack()
         self.frame_top.pack(fill="x")
@@ -62,6 +62,7 @@ class Urliste:
     def clear(self):
         self.text_urliste.delete('1.0', 'end')
         self.label['text'] = 'Bitte was eingeben'
+
 
 def main():
     Main()
