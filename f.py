@@ -25,10 +25,34 @@ def standartabweichung(array):
     return math.sqrt(varianz(array))
 
 
+def wahrscheinlichkeitsverteilung(array):
+    matrix = [
+             [],
+             [],
+             []
+    ]
+    for i in array:
+        if i not in matrix[0]:
+            matrix[0].append(i)
+    matrix[0].sort(key=float)
+    for i in matrix[0]:
+        matrix[1].append(array.count(i))
+        matrix[2].append(array.count(i) / len(array))
+    return matrix
+
+
 def antwort(array):
     x = "\
+    Anzahl der Versuche: %i\n\
     Mittelwert: %g\n\
     Varianz: %g\n\
-    Standartabweichung: %g\
-    " % (mittelwert(array), varianz(array), standartabweichung(array))
+    Standartabweichung: %g\n\
+    Wahrscheinlichkeitsverteilung: \n\
+    %s\n\
+    %s\n\
+    %s\
+    " % (len(array), mittelwert(array), varianz(array), standartabweichung(array),
+         str(wahrscheinlichkeitsverteilung(array)[0]),
+         str(wahrscheinlichkeitsverteilung(array)[1]),
+         str(wahrscheinlichkeitsverteilung(array)[2]))
     return x
