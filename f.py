@@ -4,7 +4,7 @@ Functions for Main
 import math
 
 
-def mittelwert(array):  # Hi wie gehtś
+def mittelwert(array):
     mittel = 0.0
     for num in array:
         mittel += float(num)
@@ -37,12 +37,12 @@ def wahrscheinlichkeitsverteilung(array):
     matrix[0].sort(key=float)
     for i in matrix[0]:
         matrix[1].append(array.count(i))
-        matrix[2].append(array.count(i) / len(array))
+        matrix[2].append(round(array.count(i) / len(array), 3))
     return matrix
 
 
 def antwort(array):
-    x = "\
+    x="\
     Anzahl der Versuche: %i\n\
     Mittelwert: %g\n\
     Varianz: %g\n\

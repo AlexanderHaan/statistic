@@ -32,7 +32,7 @@ class Urliste:
                                           command=self.berechnen)
         self.label = tk.Label(self.master, text="Bitte was eingeben", anchor="w",
                               justify="left")
-        self.zurueck_button = tk.Button(self.master, text="Zum Hauptmenü",
+        self.zurueck_button = tk.Button(self.frame_top, text="Zum Hauptmenü",
                                         command=self.zurueck)
         self.clear_button = tk.Button(self.frame_top, text="Löschen",
                                       command=self.clear)
@@ -41,8 +41,8 @@ class Urliste:
         self.frame_top.pack(fill="x")
         self.berechnen_button.pack(side="left")
         self.clear_button.pack(side="left")
+        self.zurueck_button.pack(side="right")
         self.label.pack()
-        self.zurueck_button.pack()
 
         self.master.mainloop()
 
