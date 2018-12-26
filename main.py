@@ -1,3 +1,4 @@
+# - *- coding: utf- 8 - *-
 """
 GUI for Main
 """
@@ -62,11 +63,11 @@ class Urliste:
                 self.table_frame.pack_forget()
                 self.table_frame.destroy()
                 self.table_frame = tk.Frame(self.master)
-            except:
+            except Exception:
                 pass
             self.table = None
             self.table = f.t_erst(self.table_frame,
-                                  f.wahrscheinlichkeitsverteilung(urliste_array))
+                                  f.wvert(urliste_array))
             self.table_frame.pack()
         except ValueError:
             self.label['text'] = 'Falsche Eingabe'

@@ -1,3 +1,4 @@
+# - *- coding: utf- 8 - *-
 """
 Functions for Main
 """
@@ -26,7 +27,7 @@ def standartabweichung(array):
     return math.sqrt(varianz(array))
 
 
-def wahrscheinlichkeitsverteilung(array):
+def wvert(array):
     matrix = [
              [],
              [],
@@ -38,7 +39,8 @@ def wahrscheinlichkeitsverteilung(array):
     matrix[0].sort(key=float)
     for i in matrix[0]:
         matrix[1].append(array.count(i))
-        matrix[2].append(round(array.count(i) / len(array), 3))
+        a = float(array.count(i)) / float(len(array))
+        matrix[2].append(a)
     return matrix
 
 
@@ -49,7 +51,10 @@ def antwort(array):
     Varianz: %g\n\
     Standartabweichung: %g\n\
     Wahrscheinlichkeitsverteilung: \
-    " % (len(array), mittelwert(array), varianz(array), standartabweichung(array))
+    " % (len(array),
+         mittelwert(array),
+         varianz(array),
+         standartabweichung(array))
     return x
 
 
