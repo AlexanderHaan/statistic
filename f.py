@@ -2,6 +2,7 @@
 Functions for Main
 """
 import math
+import tkinter as tk
 
 
 def mittelwert(array):
@@ -42,17 +43,48 @@ def wahrscheinlichkeitsverteilung(array):
 
 
 def antwort(array):
-    x="\
+    x = "\
     Anzahl der Versuche: %i\n\
     Mittelwert: %g\n\
     Varianz: %g\n\
     Standartabweichung: %g\n\
-    Wahrscheinlichkeitsverteilung: \n\
-    %s\n\
-    %s\n\
-    %s\
-    " % (len(array), mittelwert(array), varianz(array), standartabweichung(array),
-         str(wahrscheinlichkeitsverteilung(array)[0]),
-         str(wahrscheinlichkeitsverteilung(array)[1]),
-         str(wahrscheinlichkeitsverteilung(array)[2]))
+    Wahrscheinlichkeitsverteilung: \
+    " % (len(array), mittelwert(array), varianz(array), standartabweichung(array))
     return x
+
+
+class TkTabelle:
+
+    def __init__(self, frame, zeilen, spalten):
+
+        self.frame = frame
+
+        self.zeilen = zeilen
+        self.spalten = spalten
+        self.tabelle = []
+
+        for z in range(zeilen):
+
+            self.tabelle.append([])
+
+            for s in range(spalten):
+
+                entry = tk.Label(frame)
+                entry.grid(row=z, column=s)
+                self.tabelle[-1].append(entry)
+
+    def einfuegen(self, zeile, spalte, text):
+        '''Fügt text ein'''
+
+        self.tabelle[zeile-1][spalte-1]['text'] = text
+
+
+def t_erst(f, a):
+    t = TkTabelle(f, len(a), len(a[0]) + 1)
+    t.einfuegen(1, 1, 'X')
+    t.einfuegen(2, 1, "abs. Häuf.")
+    t.einfuegen(3, 1, "P(X=xi)")
+    for z in range(len(a)):
+        for s in range(len(a[z])):
+            t.einfuegen(z+1, s+2, str(a[z][s]))
+    return t

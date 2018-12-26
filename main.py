@@ -28,13 +28,19 @@ class Urliste:
         self.master.title("Urliste")
         self.frame_top = tk.Frame(self.master)
         self.text_urliste = tk.Text(self.master, height=2)
-        self.berechnen_button = tk.Button(self.frame_top, text="Berechnen",
+        self.berechnen_button = tk.Button(self.frame_top,
+                                          text="Berechnen",
                                           command=self.berechnen)
-        self.label = tk.Label(self.master, text="Bitte was eingeben", anchor="w",
+        self.label = tk.Label(self.master,
+                              text="Bitte was eingeben",
+                              anchor="w",
                               justify="left")
-        self.zurueck_button = tk.Button(self.frame_top, text="Zum Hauptmenü",
+        self.table_frame = tk.Frame(self.master)
+        self.zurueck_button = tk.Button(self.frame_top,
+                                        text="Zum Hauptmenü",
                                         command=self.zurueck)
-        self.clear_button = tk.Button(self.frame_top, text="Löschen",
+        self.clear_button = tk.Button(self.frame_top,
+                                      text="Löschen",
                                       command=self.clear)
 
         self.text_urliste.pack()
@@ -51,8 +57,17 @@ class Urliste:
         liste = liste.replace(" ", "")
         urliste_array = liste.split(",")
         try:
-            _mittelwert = f.mittelwert(urliste_array)
             self.label['text'] = f.antwort(urliste_array)
+            try:
+                self.table_frame.pack_forget()
+                self.table_frame.destroy()
+                self.table_frame = tk.Frame(self.master)
+            except:
+                pass
+            self.table = None
+            self.table = f.t_erst(self.table_frame,
+                                  f.wahrscheinlichkeitsverteilung(urliste_array))
+            self.table_frame.pack()
         except ValueError:
             self.label['text'] = 'Falsche Eingabe'
 
@@ -63,6 +78,9 @@ class Urliste:
     def clear(self):
         self.text_urliste.delete('1.0', 'end')
         self.label['text'] = 'Bitte was eingeben'
+        self.table = None
+        self.table_frame.destroy()
+        self.table_frame = tk.Frame(self.master)
 
 
 def main():
