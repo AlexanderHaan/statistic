@@ -40,7 +40,7 @@ def wvert(array):
     for i in matrix[0]:
         matrix[1].append(array.count(i))
         a = float(array.count(i)) / float(len(array))
-        matrix[2].append(a)
+        matrix[2].append(round(a, 3))
     return matrix
 
 
@@ -74,8 +74,14 @@ class TkTabelle:
 
             for s in range(spalten):
 
-                entry = tk.Label(frame)
-                entry.grid(row=z, column=s)
+                f = tk.Frame(frame,
+                             bg='black')
+                entry = tk.Label(f,
+                                 justify='left')
+                f.grid(row=z, column=s, sticky='w,e')
+                entry.pack(fill='both',
+                           padx='2',
+                           pady='2')
                 self.tabelle[-1].append(entry)
 
     def einfuegen(self, zeile, spalte, text):

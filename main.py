@@ -49,7 +49,7 @@ class Urliste:
         self.berechnen_button.pack(side="left")
         self.clear_button.pack(side="left")
         self.zurueck_button.pack(side="right")
-        self.label.pack()
+        self.label.pack(fill='x')
 
         self.master.mainloop()
 
@@ -68,7 +68,9 @@ class Urliste:
             self.table = None
             self.table = f.t_erst(self.table_frame,
                                   f.wvert(urliste_array))
-            self.table_frame.pack()
+            self.table_frame.pack(fill='x',
+                                  padx=(20, 0),
+                                  anchor='w')
         except ValueError:
             self.label['text'] = 'Falsche Eingabe'
 
