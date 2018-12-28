@@ -28,6 +28,7 @@ def standartabweichung(array):
 
 
 def wvert(array):
+    """Wahrscheinlichkeitsverteilung"""
     matrix = [
              [],
              [],
@@ -58,6 +59,13 @@ def antwort(array):
     return x
 
 
+def antwort_wvert(a, b):
+    array = []
+    for i in a:
+        array.append(b[i]) * int(a[i])
+    return antwort(array)
+
+
 class TkTabelle:
 
     def __init__(self, frame, zeilen, spalten):
@@ -79,9 +87,18 @@ class TkTabelle:
                 entry = tk.Label(f,
                                  justify='left')
                 f.grid(row=z, column=s, sticky='w,e')
-                entry.pack(fill='both',
-                           padx='2',
-                           pady='2')
+                if z == 0 and s != spalten-1:
+                    entry.pack(fill='both',
+                               padx=(0, 2))
+                elif s == spalten-1 and z == 0:
+                    entry.pack(fill='both')
+                elif s == spalten-1 and z != 0:
+                    entry.pack(fill='both',
+                               pady=(2, 0))
+                else:
+                    entry.pack(fill='both',
+                               padx=(0, 2),
+                               pady=(2, 0))
                 self.tabelle[-1].append(entry)
 
     def einfuegen(self, zeile, spalte, text):
