@@ -37,7 +37,8 @@ class Urliste:
         self.master = tk.Tk()
         self.master.title("Urliste")
         self.frame_top = tk.Frame(self.master)
-        self.text_urliste = tk.Text(self.master, height=2)
+        self.frame_text = tk.Frame(self.master)
+        self.text_urliste = tk.Text(self.frame_text, height=2)
         self.berechnen_button = tk.Button(self.frame_top,
                                           text="Berechnen",
                                           command=self.berechnen)
@@ -53,11 +54,16 @@ class Urliste:
                               justify="left")
         self.table_frame = tk.Frame(self.master)
 
-        self.text_urliste.pack()
+        # Packing
+        self.frame_text.pack(fill='x')
+        tk.Label(self.frame_text, text='Urliste: ').pack(side='left')
+        self.text_urliste.pack(side='right')
+
         self.frame_top.pack(fill="x")
         self.berechnen_button.pack(side="left")
         self.clear_button.pack(side="left")
         self.zurueck_button.pack(side="right")
+
         self.label.pack(fill='x')
 
         self.master.mainloop()
@@ -100,10 +106,14 @@ class Wvert:
     """Wahrscheinlichkeitsverteilung"""
 
     def __init__(self):
+
+        # Setting
         self.master = tk.Tk()
         self.master.title('Wahrscheinlichkeitsverteilung')
-        self.text_a = tk.Text(self.master, height=1)
-        self.text_b = tk.Text(self.master, height=1)
+        self.frame_a = tk.Frame(self.master)
+        self.frame_b = tk.Frame(self.master)
+        self.text_a = tk.Text(self.frame_a, height=1)
+        self.text_b = tk.Text(self.frame_b, height=1)
         self.frame_top = tk.Frame(self.master)
         self.berechnen_button = tk.Button(self.frame_top,
                                           text="Berechnen",
@@ -120,11 +130,19 @@ class Wvert:
                               justify="left")
         self.table_frame = tk.Frame(self.master)
 
-        self.text_a.pack()
-        self.text_b.pack()
+        # Packing
+        self.frame_a.pack(fill='x')
+        tk.Label(self.frame_a, text="X: ").pack(side='left')
+        self.text_a.pack(side='right')
+
+        self.frame_b.pack(fill='x')
+        tk.Label(self.frame_b, text="abs. Häufigkeit: ").pack(side='left')
+        self.text_b.pack(side='right')
+
         self.frame_top.pack(fill="x")
         self.berechnen_button.pack(side="left")
         self.clear_button.pack(side="left")
+
         self.zurueck_button.pack(side="right")
         self.label.pack(fill='x')
 
@@ -168,6 +186,7 @@ class Wvert:
     def clear(self):
         self.text_a.delete('1.0', 'end')
         self.text_b.delete('1.0', 'end')
+        self.label['text'] = 'Bitte was eingeben'
         self.table = None
         self.table_frame.destroy()
         self.table_frame = tk.Frame(self.master)
