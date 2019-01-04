@@ -59,13 +59,6 @@ def antwort(array):
     return x
 
 
-def antwort_wvert(a, b):
-    array = []
-    for i in a:
-        array.append(b[i]) * int(a[i])
-    return antwort(array)
-
-
 class TkTabelle:
 
     def __init__(self, frame, zeilen, spalten):

@@ -159,7 +159,7 @@ class Wvert:
         try:
             array = []
             for i in range(len(array_a)):
-                for n in range(int(array_b[i])):
+                for _n in range(int(array_b[i])):
                     array.append(int(array_a[i]))
 
             self.label['text'] = f.antwort(array)
