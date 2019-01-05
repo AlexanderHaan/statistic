@@ -7,6 +7,7 @@ import tkinter as tk
 
 
 def mittelwert(array):
+    """Mittelwert berechnen"""
     mittel = 0.0
     for num in array:
         mittel += float(num)
@@ -15,6 +16,8 @@ def mittelwert(array):
 
 
 def varianz(array):
+    """Varianz berechnen"""
+    # pylint: disable=invalid-name
     v = 0.0
     m = mittelwert(array)
     for i in array:
@@ -24,15 +27,17 @@ def varianz(array):
 
 
 def standartabweichung(array):
+    """Standartabweichung berechnen"""
     return math.sqrt(varianz(array))
 
 
 def wvert(array):
     """Wahrscheinlichkeitsverteilung"""
+    # pylint: disable=invalid-name
     matrix = [
-             [],
-             [],
-             []
+        [],
+        [],
+        []
     ]
     for i in array:
         if i not in matrix[0]:
@@ -46,6 +51,8 @@ def wvert(array):
 
 
 def antwort(array):
+    """ANtwort ausgeben"""
+    # pylint: disable=invalid-name
     x = "\
     Anzahl der Versuche: %i\n\
     Mittelwert: %g\n\
@@ -60,6 +67,9 @@ def antwort(array):
 
 
 class TkTabelle:
+    """Tabelle für tkinter"""
+    # pylint: disable=invalid-name
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, frame, zeilen, spalten):
 
@@ -101,6 +111,9 @@ class TkTabelle:
 
 
 def t_erst(f, a):
+    """Tabelle erstellen"""
+    # pylint: disable=invalid-name
+    # pylint: disable=consider-using-enumerate
     t = TkTabelle(f, len(a), len(a[0]) + 1)
     t.einfuegen(1, 1, 'X')
     t.einfuegen(2, 1, "abs. Häuf.")

@@ -7,6 +7,7 @@ import f  # Modul
 
 
 class Main:
+    """Hauptseite"""
     def __init__(self):
         self.master = tk.Tk()
         self.master.title("Hauptmenü")
@@ -24,15 +25,19 @@ class Main:
         self.master.mainloop()
 
     def zur_urliste(self):
+        """Zur Urliset"""
         self.master.destroy()
         urliste()
 
     def zu_wvert(self):
+        """Zur Urliste"""
         self.master.destroy()
         wvert()
 
 
 class Urliste:
+    """Urliste"""
+    # pylint: disable=too-many-instance-attributes
     def __init__(self):
         self.master = tk.Tk()
         self.master.title("Urliste")
@@ -69,6 +74,8 @@ class Urliste:
         self.master.mainloop()
 
     def berechnen(self):
+        """berechnen mit packing"""
+        # pylint: disable=attribute-defined-outside-init
         liste = self.text_urliste.get("1.0", "end-1c")
         liste = liste.replace(" ", "")
         urliste_array = liste.split(",")
@@ -78,23 +85,26 @@ class Urliste:
                 self.table_frame.pack_forget()
                 self.table_frame.destroy()
                 self.table_frame = tk.Frame(self.master)
-            except Exception:
-                pass
+            except Exception as err:  # pylint: disable=broad-except
+                print(err)
             self.table = None
             self.table = f.t_erst(self.table_frame,
                                   f.wvert(urliste_array))
             self.table_frame.pack(fill='x',
                                   padx=(20, 0),
                                   anchor='w')
-        except Exception as e:
+        except Exception as err:  # pylint: disable=broad-except
             self.label['text'] = 'Falsche Eingabe'
-            print(e)
+            print(err)
 
     def zurueck(self):
+        """Verlassen"""
         self.master.destroy()
         main()
 
     def clear(self):
+        """Löschen"""
+        # pylint: disable=attribute-defined-outside-init
         self.text_urliste.delete('1.0', 'end')
         self.label['text'] = 'Bitte was eingeben'
         self.table = None
@@ -104,7 +114,8 @@ class Urliste:
 
 class Wvert:
     """Wahrscheinlichkeitsverteilung"""
-
+    # pylint: disable=too-many-instance-attributes
+    # pylint: disable=broad-except
     def __init__(self):
 
         # Setting
@@ -149,6 +160,9 @@ class Wvert:
         self.master.mainloop()
 
     def berechnen(self):
+        """berechnen und packing"""
+        # pylint: disable=consider-using-enumerate
+        # pylint: disable=attribute-defined-outside-init
         liste = self.text_a.get("1.0", "end-1c")
         liste = liste.replace(" ", "")
         array_a = liste.split(",")
@@ -175,15 +189,18 @@ class Wvert:
             self.table_frame.pack(fill='x',
                                   padx=(20, 0),
                                   anchor='w')
-        except Exception as e:
+        except Exception as err:
             self.label['text'] = 'Falsche Eingabe'
-            print(e)
+            print(err)
 
     def zurueck(self):
+        """Verlassen"""
         self.master.destroy()
         main()
 
     def clear(self):
+        """Löschen"""
+        # pylint: disable=attribute-defined-outside-init
         self.text_a.delete('1.0', 'end')
         self.text_b.delete('1.0', 'end')
         self.label['text'] = 'Bitte was eingeben'
@@ -193,14 +210,17 @@ class Wvert:
 
 
 def main():
+    """Methode"""
     Main()
 
 
 def urliste():
+    """Methode"""
     Urliste()
 
 
 def wvert():
+    """Methode"""
     Wvert()
 
 
