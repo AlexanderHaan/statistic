@@ -275,6 +275,7 @@ class Wvert_w:
 
     def berechnen(self):
         """Berechnet alle Infos"""
+        # pylint: disable=broad-except
         li = self.t_a.get('1.0', 'end')
         li = li.replace(' ', '')
         arr_a = li.split(',')
@@ -287,7 +288,8 @@ class Wvert_w:
             arr_b = list(map(float, arr_b))
             self.label['text'] = p.antwort(arr_a, arr_b)
         except Exception as e:
-            raise e
+            self.label['text'] = 'Falsche Eingabe'
+            print(e)
 
     def clear(self):
         """Löscht Inhalt"""
