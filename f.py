@@ -51,7 +51,7 @@ def wvert(array):
 
 
 def antwort(array):
-    """ANtwort ausgeben"""
+    """Antwort ausgeben"""
     # pylint: disable=invalid-name
     x = "\
     Anzahl der Versuche: %i\n\
